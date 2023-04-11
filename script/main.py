@@ -26,7 +26,7 @@ class App:
         video_img = pygame.image.load('images/button_video.png').convert_alpha()
 
         self.text = smallfont.render('quit' , True , (100,100,255))
-        test_button = button.Button(30,30, video_img,1)
+        
 
         #game variables
         self.game_state= Enum('PLAY', 'PAUSE')
