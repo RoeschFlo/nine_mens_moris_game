@@ -5,9 +5,6 @@ from pygame.locals import *
 import button
 from enum import Enum
 
-# Returns False because the first key is false.
-# For dictionaries the all() function checks the keys, not the values.
-
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 800
  
