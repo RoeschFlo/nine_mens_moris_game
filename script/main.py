@@ -19,7 +19,7 @@ class App:
         
         self._running = True
         
-        pygame.display.set_caption("I have no Idea what I am doing")
+        pygame.display.set_caption("I have no Idea what I do")
         #defining a font
         smallfont = pygame.font.SysFont('Corbel',35)
   
