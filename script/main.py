@@ -13,21 +13,17 @@ class App:
         pygame.init()
         self._display_surf = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT),
              pygame.HWSURFACE | pygame.DOUBLEBUF)
-        
         self._running = True
-        
-        pygame.display.set_caption("I have no Idea what I do")
+
         #defining a font
         smallfont = pygame.font.SysFont('Corbel',35)
-  
+        #todo: not used yet
         video_img = pygame.image.load('images/button_video.png').convert_alpha()
 
         self.text = smallfont.render('quit' , True , (100,100,255))
         
-
         #game variables
         self.game_state= Enum('PLAY', 'PAUSE')
-
 
         #define fonts
         self.font = pygame.font.SysFont("arialblack", 40)
@@ -37,18 +33,17 @@ class App:
     def draw_text(self,text, font, text_color, x, y):
         self.img = font.render(text,True, text_color)
         self._display_surf.blit(self.img,(x,y))
-        
-
  
-    
- 
-    def on_event(self, event):
+    def event_handler(self, event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                self.game_state = 'PAUSE'
+                print("P")
+            if event.key == pygame.K_RETURN:
+                self.game_state = 'PLAY'
+                print("PL")
         if event.type == pygame.QUIT:
             self._running = False
-        if event.type == pygame.KEYDOWN:
-            if event.type == pygame.K_SPACE:
-                print("Pause")
-   
         
     
         
@@ -64,28 +59,18 @@ class App:
             self._display_surf.fill((0,0,0))
             if self.game_state == 'PLAY':
                 self.draw_text("Press Space to pause", self.font, self.TEXT_COL, 160,250)
+                pygame.display.set_caption("Game-Screen")
             else:
-                pass
+                self.draw_text("Press return to continue", self.font, self.TEXT_COL, 160,250)
+                pygame.display.set_caption("Pause-screen")
 
 
             for event in pygame.event.get():
-                #self.on_event(event)
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        self.game_state = 'PAUSE'
-                        print("P")
-                    if event.key == pygame.K_RETURN:
-                        self.game_state = 'PLAY'
-                        print("PL")
-                if event.type == pygame.QUIT:
-                    self._running = False
-                
-           
-            
-
+                self.event_handler(event)
+          
             pygame.display.update()
             # superimposing the text onto our button
-            self._display_surf.blit(self.text , (300,300))
+            #self._display_surf.blit(self.text , (300,300))
             
         self.on_cleanup()
 
