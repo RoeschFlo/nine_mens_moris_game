@@ -3,19 +3,23 @@ import pygame
 
 #button class
 class Button():
-	def __init__(self, x, y, image, scale):
-		width = image.get_width()
-		height = image.get_height()
-		self.image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
-		self.rect = self.image.get_rect()
-		self.rect.topleft = (x, y)
+	def __init__(self, x, y, text, size, lenght):
+		
+		
+		self.x = x
+		self.y = y
 		self.clicked = False
+		self.text = text
+		self.size = size
+		self.length = lenght
 
 	def draw(self, surface):
+		
 		action = False
 		#get mouse position
 		pos = pygame.mouse.get_pos()
-
+		pygame.draw.rect()
+		'''
 		#check mouseover and clicked conditions
 		if self.rect.collidepoint(pos):
 			if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
@@ -28,4 +32,5 @@ class Button():
 		#draw button on screen
 		surface.blit(self.image, (self.rect.x, self.rect.y))
 
-		return action
+		return action'''
+		pass

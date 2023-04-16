@@ -17,8 +17,12 @@ class App:
 
         #defining a font
         smallfont = pygame.font.SysFont('Corbel',35)
-        #todo: not used yet
-        video_img = pygame.image.load('images/button_video.png').convert_alpha()
+        
+        self.resume_button= button.Button(40,40,"Resume",40, 300)
+        #restart_button
+        #player_vs_ai_buttom
+        #player_vs_player_button
+        #quit_button
 
         self.text = smallfont.render('quit' , True , (100,100,255))
         
@@ -39,6 +43,7 @@ class App:
             if event.key == pygame.K_SPACE:
                 self.game_state = 'PAUSE'
                 print("P")
+                self.resume_button.draw(self._display_surf) 
             if event.key == pygame.K_RETURN:
                 self.game_state = 'PLAY'
                 print("PL")
@@ -57,9 +62,12 @@ class App:
         while( self._running ):
             
             self._display_surf.fill((0,0,0))
+            # the menue gets shown
             if self.game_state == 'PLAY':
                 self.draw_text("Press Space to pause", self.font, self.TEXT_COL, 160,250)
+                
                 pygame.display.set_caption("Game-Screen")
+                
             else:
                 self.draw_text("Press return to continue", self.font, self.TEXT_COL, 160,250)
                 pygame.display.set_caption("Pause-screen")
